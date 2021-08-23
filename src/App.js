@@ -54,7 +54,7 @@ function App() {
             exact
           />
 
-          <Route path="*" component={NotFound} />
+          <Route path="/*" component={NotFound} />
         </Switch>
         <ToastContainer />
       </Router>
