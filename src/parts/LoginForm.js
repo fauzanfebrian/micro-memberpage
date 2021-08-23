@@ -22,8 +22,9 @@ function LoginForm({ history }) {
       setAuthorization(login.data.token);
       const detail = await users.details();
       const production =
-        process.env.REACT_APP_FRONTPAGE_URL === "https://micro.vercel.app"
-          ? "Domain=micro.vercel.app"
+        process.env.REACT_APP_FRONTPAGE_URL ===
+        "https://microfrontpage.vercel.app"
+          ? "Domain = microfrontpage.vercel.app"
           : "";
       dispatch(populateProfile(detail.data));
       localStorage.setItem(
