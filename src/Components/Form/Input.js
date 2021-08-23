@@ -37,7 +37,7 @@ function Input({
         ].join(" ")}
         name={name}
       />
-      {error && <span className="text-red pt-2">{error}</span>}
+      {error && <span className="text-red-500 pt-2">{error}</span>}
     </div>
   );
 }

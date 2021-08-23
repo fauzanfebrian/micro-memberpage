@@ -60,7 +60,7 @@ function Sidebar({ match, history }) {
           <li>
             <a
               className="nav-link relative flex items-center py-3 px-5 transition-all duration-300 hover:text-white focus:outline-none active:text-white text-left text-indigo-500"
-              href={`${process.env.REACT_APP_FRONTPAGE_URL}/library`}
+              href={`${process.env.REACT_APP_FRONTPAGE_URL}/courses`}
               target="_blank"
               rel="noopener noreferrer"
             >
