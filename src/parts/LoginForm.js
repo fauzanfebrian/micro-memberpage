@@ -24,7 +24,7 @@ function LoginForm({ history }) {
       const production =
         process.env.REACT_APP_FRONTPAGE_URL ===
         "https://microfrontpage.vercel.app"
-          ? "Domain=microfrontpage.vercel.app;"
+          ? "domain=microfrontpage.vercel.app;"
           : "";
       dispatch(populateProfile(detail.data));
       localStorage.setItem(
@@ -43,7 +43,7 @@ function LoginForm({ history }) {
 
       document.cookie = `BWAMICRO:user=${JSON.stringify(
         userCookie
-      )}; expires=${expires.toUTCString()}; path:/; ${production}`;
+      )}; expires=${expires.toUTCString()}; path=/; ${production}`;
 
       history.push(redirect ?? "/");
     } catch (error) {
