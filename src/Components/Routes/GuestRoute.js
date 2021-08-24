@@ -7,7 +7,7 @@ const GuestRoute = ({ component: Component, match, location, ...rest }) => {
   const path = params.find((item) => item.indexOf("path") > -1);
   const redirect = path?.split("=")?.[1];
 
-  if (!ok && redirect) localStorage.getItem("BWAMICRO:redirect", redirect);
+  if (!ok && redirect) localStorage.setItem("BWAMICRO:redirect", redirect);
 
   return (
     <Route
