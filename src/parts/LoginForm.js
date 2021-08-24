@@ -24,7 +24,7 @@ function LoginForm({ history }) {
       const production =
         process.env.REACT_APP_FRONTPAGE_URL ===
         "https://microfrontpage.vercel.app"
-          ? "domain=microfrontpage.vercel.app;"
+          ? "Domain = microfrontpage.vercel.app"
           : "";
       dispatch(populateProfile(detail.data));
       localStorage.setItem(
