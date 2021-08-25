@@ -17,7 +17,6 @@ function DetailsClass({ match, history }) {
     courses
       .detail(match.params.class)
       .then((res) => {
-        console.log(res);
         if (res.chapters.length === 0)
           throw new Error("Class might not be ready yet");
         else dispatch(watchCourse(res));

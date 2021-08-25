@@ -1,7 +1,10 @@
 import Centered from "./Centered";
+import Congratulations from "./Congratulations";
+import Empty from "./Empty";
 import Footer from "./Footer";
 import Header from "./Header";
 import ListClassItem from "./ListClassItem";
+import ListOrdersItem from "./ListOrdersItem";
 import Loading from "./Loading";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
@@ -17,7 +20,10 @@ export {
   Sidebar,
   SidebarClass,
   ListClassItem,
+  ListOrdersItem,
   Loading,
   Centered,
   SettingForm,
+  Empty,
+  Congratulations,
 };

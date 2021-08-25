@@ -1,74 +1,78 @@
 import { formatThousand, formatDate } from "helper";
-import { Sidebar } from "parts";
+import {
+  Congratulations,
+  Empty,
+  ListOrdersItem,
+  Loading,
+  Sidebar,
+} from "parts";
 import React from "react";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrders, messageOrders, statusOrders } from "store/actions";
+import { Link, useLocation } from "react-router-dom";
+import { orders } from "consts";
 
 export default function Transactions() {
+  const dispatch = useDispatch();
+  const ORDERS = useSelector((state) => state.orders);
+
+  const location = useLocation();
+  const params =
+    location?.search?.length > 0 &&
+    location?.search
+      ?.substring(1, location.search.length)
+      ?.split("&")
+      ?.reduce((acc, item) => {
+        const [key, value] = item.split("=");
+        acc[key] = value;
+        return acc;
+      }, {});
+
   useEffect(() => {
     window.scroll(0, 0);
-  }, []);
-  const items = [
-    {
-      id: "2",
-      slug: "3",
-      image: "/images/new-class-3.png",
-      name: "Good Negotiation",
-      levelType: "Beginner",
-      price: 500000,
-      date: "2020-07-02",
-    },
-  ];
+    dispatch(statusOrders("loading"));
+    orders
+      .all()
+      .then((res) => {
+        console.log(res);
+        dispatch(fetchOrders(res));
+      })
+      .catch((err) =>
+        dispatch(messageOrders(err?.response?.data?.message ?? "error"))
+      );
+  }, [dispatch]);
+
   return (
     <div className="flex">
       <Sidebar />
       <div className="flex-1">
-        <div className="px-16">
-          <section className="flex flex-col mt-8">
-            <h1 className="text-4xl text-gray-900 font-medium">Transactions</h1>
-            <p className="text-lg text-gray-600">
-              Keep on tract what you've invested
-            </p>
-          </section>
-          <section className="flex flex-col mt-8">
-            {items?.length > 0
-              ? items?.map((item) => (
-                  <div
-                    className="flex justify-between items-center -mx-4 mt-5"
-                    key={item.id}
-                  >
-                    <div className="w-auto px-4" style={{ width: 150 }}>
-                      <img
-                        src={item?.image ?? ""}
-                        alt={item?.name ?? "Class name"}
-                      />
-                    </div>
-                    <div className="px-4 w-3/12">
-                      <h6 className="text-gray-900 text-lg">
-                        {item?.name ?? "Class name"}
-                      </h6>
-                      <p className="text-gray-600">
-                        {item?.levelType ?? "Level"}
-                      </p>
-                    </div>
-                    <div className="px-4 w-2/12">
-                      <h6 className="text-gray-900 text-lg">
-                        Rp. {formatThousand(item?.price ?? 0)}
-                      </h6>
-                    </div>
-                    <div className="px-4 w-2/12">
-                      <h6 className="text-gray-900 text-lg">
-                        {item?.date ? formatDate(item?.date) : "-"}
-                      </h6>
-                    </div>
-                    <div className="px-4 w-auto">
-                      <button className="bg-gray-300 hover:bg-gray-400 transition-all duration-200 focus:outline-none shadow-inner text-white px-7 py-2">
-                        Lihat Kelas
-                      </button>
-                    </div>
-                  </div>
-                ))
-              : "No Transactions"}
-          </section>
+        <div className="px-16 pb-4">
+          {ORDERS.status === "loading" && <Loading />}
+          {ORDERS.status === "error" && ORDERS.message}
+          {ORDERS.status === "ok" &&
+            (params?.order_id ? (
+              <Congratulations data={ORDERS.data[params?.order_id]} />
+            ) : ORDERS.total > 0 ? (
+              <>
+                <section className="flex flex-col mt-8">
+                  <h1 className="text-4xl text-gray-900 font-medium">
+                    Transactions
+                  </h1>
+                  <p className="text-lg text-gray-600">
+                    Keep on tract what you've invested
+                  </p>
+                </section>
+                <section className="flex flex-col mt-8">
+                  {}
+                  {Object.values(ORDERS.data)?.map?.((item, index) => (
+                    <ListOrdersItem data={item} key={index} />
+                  ))}
+                </section>
+              </>
+            ) : (
+              <Empty />
+            ))}
         </div>
       </div>
     </div>

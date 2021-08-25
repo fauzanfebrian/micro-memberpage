@@ -27549,6 +27549,29 @@ video {
   content: none;
 }
 
+.overflow-y-auto::-webkit-scrollbar {
+  width: 0;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  --tw-bg-opacity: 1;
+  background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
+  border-radius: 5px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:active {
+  --tw-bg-opacity: 1;
+  background-color: rgba(46, 55, 164, var(--tw-bg-opacity));
+}
+
+.overflow-y-auto:hover .overflow-y-auto::-webkit-scrollbar {
+  width: 10px;
+}
+
 .modal-close {
   position: absolute;
   right: 0px;

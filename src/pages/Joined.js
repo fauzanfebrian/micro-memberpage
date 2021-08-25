@@ -1,8 +1,10 @@
 import { courses } from "consts";
 import { Loading } from "parts";
 import React, { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { withRouter } from "react-router-dom";
 import ServerError from "./500";
+import { Link } from "react-router-dom";
 
 function Joined({ history, match }) {
   const [state, setState] = useState({
@@ -11,25 +13,21 @@ function Joined({ history, match }) {
     data: {},
   });
 
-  useEffect(() => {
-    courses
-      .detail(match.params.class)
-      .then((res) => setState({ isLoading: false, isError: false, data: res }))
-      .catch((err) => {
-        console.log(err);
-        setState({ isLoading: false, isError: true, data: null });
-      });
-  }, [match.params.class, setState]);
-
-  const joining = async () => {
+  const joining = useCallback(async () => {
     try {
-      await courses.join(match.params.class);
-      await history.push(`courses/${match.params.class}`);
+      const details = await courses.detail(match.params.class);
+      const joined = await courses.join(match.params.class);
+
+      if (joined?.data?.snap_url) window.location.href = joined?.data?.snap_url;
+      else setState({ isLoading: false, isError: false, data: details });
     } catch (error) {
       if (error?.response?.data?.message === "user already take this course")
-        history.push(`courses/${match.params.class}`);
+        history.push(`/courses/${match?.params?.class}`);
     }
-  };
+  }, [history, match.params.class]);
+  useEffect(() => {
+    joining();
+  }, [joining]);
 
   if (state.isLoading) return <Loading />;
   if (state.isError) return <ServerError />;
@@ -44,12 +42,12 @@ function Joined({ history, match }) {
         </span>{" "}
         class
       </p>
-      <span
-        onClick={joining}
+      <Link
+        to={`/courses/${match.params.class}`}
         className="bg-orange-500 hover:bg-orange-400 transition-all duration-200 focus:outline-none shadow-inner text-white px-6 py-3 cursor-pointer"
       >
         Start Learn
-      </span>
+      </Link>
     </section>
   );
 }

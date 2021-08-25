@@ -21,11 +21,7 @@ function LoginForm({ history }) {
       });
       setAuthorization(login.data.token);
       const detail = await users.details();
-      const production =
-        process.env.REACT_APP_FRONTPAGE_URL ===
-        "https://microfrontpage.vercel.app"
-          ? "Domain = microfrontpage.vercel.app"
-          : "";
+
       dispatch(populateProfile(detail.data));
       localStorage.setItem(
         "BWAMICRO:token",
@@ -39,11 +35,10 @@ function LoginForm({ history }) {
         name: detail.data.name,
         thumbnail: detail.data.avatar,
       };
-      const expires = new Date(new Date().getTime * 7 * 24 * 60 * 60 * 1000);
 
-      document.cookie = `BWAMICRO:user=${JSON.stringify(
-        userCookie
-      )}; expires=${expires.toUTCString()}; path=/; ${production}`;
+      await fetch(
+        `${process.env.REACT_APP_FRONTPAGE_URL}/cookie-set/user?name=${userCookie.name}&thumbnail=${userCookie.thumbnail}`
+      );
 
       history.push(redirect ?? "/");
     } catch (error) {

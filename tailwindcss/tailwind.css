@@ -4,6 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.overflow-y-auto::-webkit-scrollbar {
+  width: 0;
+}
+.overflow-y-auto::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  @apply bg-indigo-600;
+  border-radius: 5px;
+}
+.overflow-y-auto::-webkit-scrollbar-thumb:active {
+  @apply bg-indigo-900;
+}
+
+.overflow-y-auto:hover .overflow-y-auto::-webkit-scrollbar {
+  width: 10px;
+}
+
 .modal-close {
   @apply absolute right-0 cursor-pointer  inline-block;
   width: 30px;

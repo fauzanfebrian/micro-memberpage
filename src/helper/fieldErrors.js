@@ -3,7 +3,6 @@ const fieldErrors = (errors) => {
     typeof errors === "object"
       ? errors?.reduce((listErrors, error) => {
           if (error?.field) listErrors[error?.field] = error;
-          console.log("reduce", listErrors);
           return listErrors;
         }, {})
       : { email: { message: errors } };
