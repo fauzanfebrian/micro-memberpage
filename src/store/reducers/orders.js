@@ -1,9 +1,4 @@
-import {
-  FETCH_ORDERS,
-  MESSAGE_ORDER,
-  STATUS_ORDERS,
-  WATCH_ORDER,
-} from "consts";
+import { FETCH_ORDERS, MESSAGE_ORDER, STATUS_ORDERS } from "consts";
 
 const initialState = {
   data: [],

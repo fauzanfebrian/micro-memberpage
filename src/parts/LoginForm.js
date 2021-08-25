@@ -38,9 +38,8 @@ function LoginForm({ history }) {
 
       fetch(
         `${process.env.REACT_APP_FRONTPAGE_URL}/cookie-set/user?name=${userCookie.name}&thumbnail=${userCookie.thumbnail}`
-      ).then((res) => {
-        history.push(redirect ?? "/");
-      });
+      );
+      history.push(redirect ?? "/");
     } catch (error) {
       setErrors(error?.response?.data?.message ?? "error");
     }
