@@ -36,11 +36,11 @@ function LoginForm({ history }) {
         thumbnail: detail.data.avatar,
       };
 
-      fetch(
+      const myWindow = window.open(
         `${process.env.REACT_APP_FRONTPAGE_URL}/cookie-set/user?name=${userCookie.name}&thumbnail=${userCookie.thumbnail}`
-      )
-        .then((res) => history.push(redirect ?? "/"))
-        .catch((err) => console.log(err));
+      );
+      myWindow.close();
+      history.push(redirect ?? "/");
     } catch (error) {
       setErrors(error?.response?.data?.message ?? "error");
     }
