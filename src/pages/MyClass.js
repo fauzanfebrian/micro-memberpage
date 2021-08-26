@@ -10,7 +10,6 @@ export default function MyClass() {
 
   useEffect(() => {
     window.scroll(0, 0);
-
     dispatch(statusCourses("loading"));
     courses
       .mine()
@@ -24,13 +23,13 @@ export default function MyClass() {
     <div className="flex">
       <Sidebar />
       <main className="flex-1">
-        <div className="px-16">
+        <div className="px-4 md:px-16">
           {COURSES.status === "loading" && <Loading />}
           {COURSES.status === "error" && COURSES.message}
           {COURSES.status === "ok" &&
             (COURSES.total > 0 ? (
               <>
-                <section className="flex flex-col mt-8">
+                <section className="flex flex-col mt-8 pl-12 md:pl-0">
                   <h1 className="text-4xl text-gray-900 text-medium">
                     My Class
                   </h1>
@@ -39,7 +38,7 @@ export default function MyClass() {
                   </p>
                 </section>
                 <div className="flex-col mt-8">
-                  <div className="flex flex-wrap justify-start items-start -mx-4">
+                  <div className="flex flex-wrap justify-start items-start -px-4">
                     {Object.values(COURSES.data)?.map?.((item, index) => (
                       <ListClassItem data={item} key={index} />
                     ))}

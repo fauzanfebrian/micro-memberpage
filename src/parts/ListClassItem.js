@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function ListClassItem({ data }) {
   return (
-    <div className="w-1/4 px-4 item relative mb-3">
+    <div className="w-full md:w-1/4 md:px-4 item relative mb-3">
       <figure className="item-image">
         <ICPlay />
         <img

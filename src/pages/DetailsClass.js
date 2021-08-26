@@ -54,8 +54,8 @@ function DetailsClass({ match, history }) {
             defaultUri={`/courses/${match.params.class}/${currentChapter.id}/${currentLesson.video}`}
           />
           <main className="flex-1">
-            <div className="px-16">
-              <section className="flex flex-col mt-8">
+            <div className="px-4 md:px-16">
+              <section className="flex flex-col mt-8 pl-12 md:pl-0">
                 <h1 className="text-4xl text-gray-900 font-medium">
                   {currentLesson?.name ?? "Lesson name"}
                 </h1>

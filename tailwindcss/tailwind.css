@@ -22,6 +22,46 @@
   width: 10px;
 }
 
+.toggle {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  z-index: 99999;
+}
+.toggle:focus {
+  outline: none;
+}
+.toggle::before,
+.toggle::after {
+  @apply right-0  absolute bg-gray-200 transition-all duration-100;
+  content: "";
+  height: 3px;
+  transform-origin: center;
+}
+.toggle.dark::before,
+.toggle.dark::after {
+  @apply bg-gray-900;
+}
+.toggle::before {
+  top: 26%;
+  width: 25px;
+}
+.toggle::after {
+  top: 58%;
+  width: 16px;
+}
+.toggle.active::before {
+  transform: translateY(-50%) rotate(-45deg);
+}
+.toggle.active::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+.toggle.active::before,
+.toggle.active::after {
+  width: 20px;
+  top: 50%;
+}
+
 .modal-close {
   @apply absolute right-0 cursor-pointer  inline-block;
   width: 30px;
@@ -56,7 +96,8 @@
 }
 
 .link-wrapped::before {
-  @apply cursor-pointer absolute z-50 inset-0;
+  @apply cursor-pointer absolute inset-0;
+  z-index: 1;
   content: "";
 }
 

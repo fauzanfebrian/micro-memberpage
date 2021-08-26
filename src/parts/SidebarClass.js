@@ -1,5 +1,5 @@
 import { ICBack } from "assets/images";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 function SidebarClass({ match, data, defaultUri }) {
@@ -7,6 +7,30 @@ function SidebarClass({ match, data, defaultUri }) {
     return match.url === path || defaultUri === path
       ? "active text-teal"
       : "text-indigo-500";
+  };
+  const [toggle, setToggle] = useState(false);
+  const sidebarRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (
+      sidebarRef &&
+      !sidebarRef?.current?.contains?.(event.target) &&
+      window.screen.width <= 768
+    ) {
+      setToggle(true);
+      document.querySelector("#root").className = "";
+    }
+  };
+
+  useEffect(() => {
+    if (window.screen.width <= 768) setToggle(true);
+    document.querySelector("#root").className = "";
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleClick = () => {
+    setToggle(!toggle);
+    document.querySelector("#root").className = "overflow-hidden h-screen";
   };
 
   const list = [];
@@ -39,28 +63,40 @@ function SidebarClass({ match, data, defaultUri }) {
   });
 
   return (
-    <aside
-      className="bg-indigo-1000 max-h-screen h-screen overflow-y-auto"
-      style={{ width: 280 }}
-    >
-      <div
-        className="overflow-y-auto max-h-screen h-screen fixed bg-indigo-1000 flex flex-col content-between z-50"
-        style={{ width: 280 }}
-      >
-        <ul className="main-menu mt-12">
-          <li>
-            <Link
-              className="relative flex items-center py-3 px-5 w-full text-white mb-12"
-              to="/"
-            >
-              <ICBack className="mr-2" />
-              Back to home
-            </Link>
-          </li>
-          {list}
-        </ul>
+    <>
+      <div className="md:hidden  absolute z-50">
+        {toggle && (
+          <button
+            style={{ left: 30, top: 45 }}
+            className="toggle dark"
+            onClick={toggleClick}
+          />
+        )}
       </div>
-    </aside>
+      <aside
+        ref={sidebarRef}
+        className="bg-indigo-1000 max-h-screen h-screen overflow-y-auto transition-all duration-300 fixed md:relative z-50"
+        style={{ width: 280, left: toggle ? -280 : 0 }}
+      >
+        <div
+          className="overflow-y-auto max-h-screen h-screen fixed bg-indigo-1000 flex flex-col content-between z-50"
+          style={{ width: 280 }}
+        >
+          <ul className="main-menu mt-12 pb-6">
+            <li>
+              <Link
+                className="relative flex items-center py-3 px-5 w-full text-white mb-12"
+                to="/"
+              >
+                <ICBack className="mr-2" />
+                Back to home
+              </Link>
+            </li>
+            {list}
+          </ul>
+        </div>
+      </aside>
+    </>
   );
 }
 export default withRouter(SidebarClass);

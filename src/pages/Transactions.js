@@ -32,10 +32,7 @@ export default function Transactions() {
     dispatch(statusOrders("loading"));
     orders
       .all()
-      .then((res) => {
-        console.log(res);
-        dispatch(fetchOrders(res));
-      })
+      .then((res) => dispatch(fetchOrders(res)))
       .catch((err) =>
         dispatch(messageOrders(err?.response?.data?.message ?? "error"))
       );
@@ -45,7 +42,7 @@ export default function Transactions() {
     <div className="flex">
       <Sidebar />
       <div className="flex-1">
-        <div className="px-16 pb-4">
+        <div className="px-4 md:px-16 pb-4">
           {ORDERS.status === "loading" && <Loading />}
           {ORDERS.status === "error" && ORDERS.message}
           {ORDERS.status === "ok" &&
@@ -53,7 +50,7 @@ export default function Transactions() {
               <Congratulations data={ORDERS.data[params?.order_id]} />
             ) : ORDERS.total > 0 ? (
               <>
-                <section className="flex flex-col mt-8">
+                <section className="flex flex-col pl-12 md:pl-0 mt-8">
                   <h1 className="text-4xl text-gray-900 font-medium">
                     Transactions
                   </h1>
@@ -62,7 +59,6 @@ export default function Transactions() {
                   </p>
                 </section>
                 <section className="flex flex-col mt-8">
-                  {}
                   {Object.values(ORDERS.data)?.map?.((item, index) => (
                     <ListOrdersItem data={item} key={index} />
                   ))}

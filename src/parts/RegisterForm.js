@@ -34,7 +34,7 @@ function LoginForm({ history }) {
 
   return (
     <div className="flex justify-center py-24">
-      <div className="w-3/12">
+      <div className="w-full md:w-3/12">
         <h3 className="text-3xl text-gray-900 mb-7">
           <span className="font-semibold">Grow Skills</span> From, <br />
           Anywhere
@@ -101,8 +101,8 @@ function LoginForm({ history }) {
           </button>
         </form>
       </div>
-      <div className="w-2/12" />
-      <div className="w-5/12">
+      <div className="w-2/12 hidden md:block" />
+      <div className="w-5/12 hidden md:block">
         <div className="relative" style={{ width: 369, height: 440 }}>
           <div
             className="absolute border-indigo-700 border-2 -mt-8 -mr-16 left-0"

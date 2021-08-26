@@ -33,10 +33,13 @@ export default function errorHandler(err) {
 
               return axios(originalRequest);
             } else {
-              window.location.href = "/login";
               localStorage.removeItem("BWAMICRO:token");
+              window.location.href = "/login";
             }
           });
+      } else if (err?.response?.data?.message === "invalid token") {
+        localStorage.removeItem("BWAMICRO:token");
+        window.location.href = "/login";
       } else message = err.response.data.message;
 
       if (typeof message === "string") toast.error(message);

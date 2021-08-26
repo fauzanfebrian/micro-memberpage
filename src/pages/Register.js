@@ -10,7 +10,7 @@ export default function Login() {
       <section className="container mx-auto pt-10">
         <Header onLight />
       </section>
-      <section className="container mx-auto pt-10">
+      <section className="container mx-auto px-4 pt-10">
         <RegisterForm />
       </section>
       <section className="mt-24 py-12 bg-indigo-1000">

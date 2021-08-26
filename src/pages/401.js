@@ -7,13 +7,15 @@ export default function Unauthenticated({
   fallbackText,
 }) {
   return (
-    <section className="h-screen justify-center flex flex-col items-center">
+    <section className="h-screen justify-center flex flex-col items-center px-4">
       <img
         src="/images/il-security.jpg"
         alt="you are not supposed here, please login"
         className="-mt-8"
       />
-      <h1 className="text-3xl text-gray-900 mt-12">Wow! How are you here?</h1>
+      <h1 className="text-3xl text-gray-900 mt-12 text-center">
+        Wow! How are you here?
+      </h1>
       <p className="text-lg text-gray-600 mt-4 text-center lg:w-3/12 xl:2/12 mx-auto mb-8">
         Seems like you do not have access for this page. We are sorry.
       </p>

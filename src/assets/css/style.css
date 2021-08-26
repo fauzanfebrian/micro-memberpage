@@ -20827,7 +20827,7 @@ video {
 
 .text-5xl{
   font-size: 3rem;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 .text-6xl{
@@ -27572,6 +27572,64 @@ video {
   width: 10px;
 }
 
+.toggle {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  z-index: 99999;
+}
+
+.toggle:focus {
+  outline: none;
+}
+
+.toggle::before, .toggle::after{
+  position: absolute;
+  right: 0px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(232, 240, 250, var(--tw-bg-opacity));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-duration: 100ms;
+}
+
+.toggle::before,
+.toggle::after{
+  content: "";
+  height: 3px;
+  transform-origin: center;
+}
+
+.toggle.dark::before, .toggle.dark::after{
+  --tw-bg-opacity: 1;
+  background-color: rgba(19, 43, 80, var(--tw-bg-opacity));
+}
+
+.toggle::before {
+  top: 26%;
+  width: 25px;
+}
+
+.toggle::after {
+  top: 58%;
+  width: 16px;
+}
+
+.toggle.active::before {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.toggle.active::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.toggle.active::before,
+.toggle.active::after {
+  width: 20px;
+  top: 50%;
+}
+
 .modal-close {
   position: absolute;
   right: 0px;
@@ -27632,8 +27690,8 @@ video {
   right: 0px;
   bottom: 0px;
   left: 0px;
-  z-index: 50;
   cursor: pointer;
+  z-index: 1;
   content: "";
 }
 
@@ -48072,7 +48130,7 @@ figure.item-image svg.icon {
 
   .sm\:text-5xl{
     font-size: 3rem;
-    line-height: 1;
+    line-height: 1.5;
   }
 
   .sm\:text-6xl{
@@ -74758,7 +74816,7 @@ figure.item-image svg.icon {
 
   .md\:text-5xl{
     font-size: 3rem;
-    line-height: 1;
+    line-height: 1.5;
   }
 
   .md\:text-6xl{
@@ -101444,7 +101502,7 @@ figure.item-image svg.icon {
 
   .lg\:text-5xl{
     font-size: 3rem;
-    line-height: 1;
+    line-height: 1.5;
   }
 
   .lg\:text-6xl{
@@ -128130,7 +128188,7 @@ figure.item-image svg.icon {
 
   .xl\:text-5xl{
     font-size: 3rem;
-    line-height: 1;
+    line-height: 1.5;
   }
 
   .xl\:text-6xl{
@@ -154816,7 +154874,7 @@ figure.item-image svg.icon {
 
   .\32xl\:text-5xl{
     font-size: 3rem;
-    line-height: 1;
+    line-height: 1.5;
   }
 
   .\32xl\:text-6xl{
