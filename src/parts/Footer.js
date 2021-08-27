@@ -108,7 +108,7 @@ function Footer() {
       </div>
       <div className="border-t border-gray-800 mt-8 text-center py-8">
         <p className="text-indigo-500">
-          2020 Copyright Micro by BuildWith Angga. All Rights Reserved.
+          2020 Copyright Micro by Fauzan. All Rights Reserved.
         </p>
       </div>
     </footer>

@@ -6,14 +6,12 @@ import { useEffect } from "react";
 
 function Header({ onLight, location }) {
   useEffect(() => {
-    document.getElementsByTagName("body")[0].className = "";
+    document.querySelector("#root").className = "";
   }, []);
   const [toggle, setToggle] = useState(false);
   const toggleClick = () => {
     setToggle(!toggle);
-    document
-      .getElementsByTagName("body")[0]
-      .classList.toggle("overflow-hidden");
+    document.querySelector("#root").classList.toggle("overflow-hidden");
   };
   const linkColor = onLight && !toggle ? "text-gray-900" : "text-white";
 
