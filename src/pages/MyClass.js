@@ -10,6 +10,7 @@ export default function MyClass() {
 
   useEffect(() => {
     window.scroll(0, 0);
+    document.title = "Micro | My Class";
     dispatch(statusCourses("loading"));
     courses
       .mine()

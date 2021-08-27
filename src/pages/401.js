@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Unauthenticated({
@@ -6,6 +6,9 @@ export default function Unauthenticated({
   fallbackUrl,
   fallbackText,
 }) {
+  useEffect(() => {
+    document.title = "Unauthenticated";
+  }, []);
   return (
     <section className="h-screen justify-center flex flex-col items-center px-4">
       <img

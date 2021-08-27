@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function NotFound() {
+  useEffect(() => {
+    document.title = "Page Not Found";
+  }, []);
   return (
     <section className="h-screen flex flex-col items-center">
       <img src="/images/il-404.jpg" alt="oops we lost" className="-mt-10" />

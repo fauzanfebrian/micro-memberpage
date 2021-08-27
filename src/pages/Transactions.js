@@ -28,6 +28,7 @@ export default function Transactions() {
       }, {});
 
   useEffect(() => {
+    document.title = "Micro | Tansactions";
     window.scroll(0, 0);
     dispatch(statusOrders("loading"));
     orders

@@ -19,7 +19,10 @@ function DetailsClass({ match, history }) {
       .then((res) => {
         if (res.chapters.length === 0)
           throw new Error("Class might not be ready yet");
-        else dispatch(watchCourse(res));
+        else {
+          document.title = `Micro | ${res?.name || "Watch Class"}`;
+          dispatch(watchCourse(res));
+        }
       })
       .catch((err) =>
         dispatch(messageCourses(err?.response?.data?.message ?? "error"))

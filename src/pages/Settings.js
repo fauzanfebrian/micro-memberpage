@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 export default function Settings() {
   useEffect(() => {
     window.scroll(0, 0);
+    document.title = "Micro | Settings";
   }, []);
   return (
     <div className="flex">

@@ -17,7 +17,7 @@ function Joined({ history, match }) {
     try {
       const details = await courses.detail(match.params.class);
       const joined = await courses.join(match.params.class);
-
+      document.title = `Micro | Join ${details?.name || "Details Class"}`;
       if (joined?.data?.snap_url) window.location.href = joined?.data?.snap_url;
       else setState({ isLoading: false, isError: false, data: details });
     } catch (error) {
